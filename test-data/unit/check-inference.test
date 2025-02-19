@@ -2332,7 +2332,7 @@ def f() -> None:
 o = 1
 [out]
 
-[case testKirillTest]
+[case testReturnDictGetsInferredByFunctionReturnType]
 from typing import Dict
 def f() -> Dict[str, str]: 
     x = {} # E: Need type annotation for "x" (hint: "x: Dict[<type>, <type>] = ...")
