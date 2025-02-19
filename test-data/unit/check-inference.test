@@ -2334,7 +2334,7 @@ o = 1
 
 [case testKirillTest]
 from typing import Dict
-def func() -> Dict[str, str]: 
+def f() -> Dict[str, str]: 
     x = {} # E: Need type annotation for "x" (hint: "x: Dict[<type>, <type>] = ...")
     reveal_type(x) # N: Revealed type is "builtins.dict[builtins.str, builtins.str]"
     return x
