@@ -2332,6 +2332,14 @@ def f() -> None:
 o = 1
 [out]
 
+[case testKirillTest]
+from typing import Dict
+def func() -> Dict[str, str]: 
+    x = {} # E: Need type annotation for "x" (hint: "x: Dict[<type>, <type>] = ...")
+    reveal_type(x) # N: Revealed type is "builtins.dict[builtins.str, builtins.str]"
+    return x
+[out]
+
 [case testMultipassAndClassAttribute]
 class S:
     def foo(self) -> int:
@@ -3913,13 +3921,3 @@ x = "abc"
 for x in list[int]():
     reveal_type(x)  # N: Revealed type is "builtins.int"
 reveal_type(x) # N: Revealed type is "Union[builtins.int, builtins.str]"
-
-[case testInferLocalVariableTypeWithUnderspecifiedGenericTypeKirillTest]
-from typing import TypeVar, Generic
-T = TypeVar('T')
-def g() -> None:
-    x = f() # E: Need type annotation for "test_x"
-
-def f() -> 'A[T]': pass
-class A(Generic[T]): pass
-[out]
