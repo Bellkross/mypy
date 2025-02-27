@@ -2332,6 +2332,14 @@ def f() -> None:
 o = 1
 [out]
 
+[case testReturnDictGetsInferredByFunctionReturnType]
+from typing import Dict
+def f() -> Dict[str, str]: 
+    x = {} # E: Need type annotation for "x" (hint: "x: Dict[<type>, <type>] = ...")
+    reveal_type(x) # N: Revealed type is "builtins.dict[builtins.str, builtins.str]"
+    return x
+[out]
+
 [case testMultipassAndClassAttribute]
 class S:
     def foo(self) -> int:

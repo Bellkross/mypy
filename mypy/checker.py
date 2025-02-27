@@ -1364,6 +1364,7 @@ class TypeChecker(NodeVisitor[None], CheckerPluginInterface):
                 self.check_default_args(item, body_is_trivial)
 
             # Type check body in a new scope.
+            # I am here
             with self.binder.top_frame_context():
                 # Copy some type narrowings from an outer function when it seems safe enough
                 # (i.e. we can't find an assignment that might change the type of the
